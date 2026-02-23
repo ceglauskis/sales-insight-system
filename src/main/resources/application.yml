@@ -66,8 +66,8 @@ server:
 
 # --- JWT ---
 jwt:
-  secret: ${JWT_SECRET}
-  expiration-ms: 86400000  # 24h
+  secret: "dev-secret-key-que-precisa-ter-pelo-menos-32-caracteres-ok"
+  expiration-ms: 86400000
 
 # --- APIs Externas ---
 ai:
