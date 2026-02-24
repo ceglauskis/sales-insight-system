@@ -71,10 +71,10 @@ jwt:
 
 # --- APIs Externas ---
 ai:
-  whisper:
-    api-key: ${OPENAI_API_KEY}
-    url: https://api.openai.com/v1/audio/transcriptions
-    model: whisper-1
+  assemblyai:
+    api-key: "8e41512d6ce34dd2858c1074eebe447a"
+    upload-url: https://api.assemblyai.com/v2/upload
+    transcript-url: https://api.assemblyai.com/v2/transcript
   gemini:
     api-key: ${GEMINI_API_KEY}
     url: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent
