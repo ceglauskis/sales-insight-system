@@ -1,5 +1,6 @@
 package com.salesinsight.meeting.service;
 
+import com.salesinsight.infra.messaging.EventPublisher;
 import com.salesinsight.infra.storage.FileStorageService;
 import com.salesinsight.meeting.domain.Meeting;
 import com.salesinsight.meeting.dto.MeetingResponse;
@@ -18,6 +19,7 @@ public class MeetingService {
 
     private final MeetingRepository meetingRepository;
     private final FileStorageService fileStorageService;
+    private final EventPublisher eventPublisher;
 
     public MeetingResponse upload(MeetingUploadRequest request, UUID ownerId) {
         log.info("Iniciando upload de meeting. título={}, ownerId={}", request.title(), ownerId);
@@ -27,6 +29,8 @@ public class MeetingService {
 
         Meeting meeting = new Meeting(request.title(), videoUrl, ownerId);
         meetingRepository.save(meeting);
+
+        eventPublisher.publishMeetingCreated(meeting.getId());
 
         log.info("Meeting criada com sucesso. meetingId={}", meeting.getId());
 
