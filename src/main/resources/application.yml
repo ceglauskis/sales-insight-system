@@ -66,17 +66,17 @@ server:
 
 # --- JWT ---
 jwt:
-  secret: "dev-secret-key-que-precisa-ter-pelo-menos-32-caracteres-ok"
+  secret: ${JWT_SECRET}
   expiration-ms: 86400000
 
 # --- APIs Externas ---
 ai:
   assemblyai:
-    api-key: "8e41512d6ce34dd2858c1074eebe447a"
+    api-key: ${ASSEMBLYAI_API_KEY}
     upload-url: https://api.assemblyai.com/v2/upload
     transcript-url: https://api.assemblyai.com/v2/transcript
   gemini:
-    api-key: "AIzaSyCOFi2P7bT4hPkEhLxQ0v7xua1MVkImHMk"
+    api-key: ${GEMINI_API_KEY}
     url: https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent
 
 # --- Storage ---
