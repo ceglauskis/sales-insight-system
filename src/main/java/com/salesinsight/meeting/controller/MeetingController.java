@@ -1,8 +1,10 @@
 package com.salesinsight.meeting.controller;
 
 import com.salesinsight.infra.security.AuthenticatedUser;
+import com.salesinsight.meeting.dto.InsightResponse;
 import com.salesinsight.meeting.dto.MeetingResponse;
 import com.salesinsight.meeting.dto.MeetingUploadRequest;
+import com.salesinsight.meeting.service.InsightService;
 import com.salesinsight.meeting.service.MeetingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -18,6 +21,8 @@ import java.util.UUID;
 public class MeetingController {
 
     private final MeetingService meetingService;
+
+    private final InsightService insightService;
 
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<MeetingResponse> upload(
@@ -36,4 +41,17 @@ public class MeetingController {
         MeetingResponse response = meetingService.findById(meetingId, authenticatedUser.userId());
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{meetingId}/insights")
+    public ResponseEntity<List<InsightResponse>> findInsights(
+            @PathVariable UUID meetingId,
+            @AuthenticationPrincipal AuthenticatedUser authenticatedUser
+    ) {
+        List<InsightResponse> response = insightService.findByMeetingId(
+                meetingId, authenticatedUser.userId()
+        );
+        return ResponseEntity.ok(response);
+    }
+
+
 }
