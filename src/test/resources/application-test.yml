@@ -1,0 +1,19 @@
+ai:
+  assemblyai:
+    api-key: "test-key"
+    upload-url: https://api.assemblyai.com/v2/upload
+    transcript-url: https://api.assemblyai.com/v2/transcript
+  gemini:
+    api-key: "test-key"
+    url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "test@test.com"
+    password: "test-password"
+
+jwt:
+  secret: "test-secret-key-que-precisa-ter-pelo-menos-32-caracteres-ok"
+  expiration-ms: 86400000
